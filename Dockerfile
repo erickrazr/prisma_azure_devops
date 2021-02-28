@@ -14,6 +14,8 @@ COPY . .
 
 COPY --chown=node:node . .
 
+RUN ls
+
 USER node
 
 EXPOSE 8080
