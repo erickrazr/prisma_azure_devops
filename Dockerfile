@@ -1,4 +1,6 @@
-FROM $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+# escape=`
+
+FROM 415704696994.dkr.ecr.us-east-1.amazonaws.com/alpine-app-image:latest
 
 RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 
