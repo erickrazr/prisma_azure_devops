@@ -10,7 +10,7 @@ phases:
       - echo APP Build started on `date`
       - echo Building the Docker image...
       - pwd
-      - docker build -t alpine-app-image:latest .
+      - docker build -t alpine-infra-image:latest .
       - pwd
       - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_APP_REPO_NAME:$IMAGE_TAG      
   post_build:
