@@ -13,6 +13,7 @@ phases:
       - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_APP_REPO_NAME:$IMAGE_TAG
             # You may also copy the Shell script content for below URL
       - curl https://gitlab.com/prismacloud-public/shift-left/extension/-/raw/master/aws-codepipeline/image_scan.sh -o image_scan.sh
+      - chmod 777 image_scan.sh
       - ./image_scan.sh
   post_build:
     commands:
