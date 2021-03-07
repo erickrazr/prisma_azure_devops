@@ -26,7 +26,7 @@ phases:
       # -u and -p provide credentials for the console.  These creds only need the CI User role.
       # Finally, we provide the name of the image we built with 'docker build', above.
       
-      - ./twistcli images scan --details -address $prisma_cloud_compute_url -u $prisma_cloud_compute_username -p $prisma_cloud_compute_password $IMAGE_APP_REPO_NAME:$IMAGE_TAG
+      - ./twistcli images scan --details --address $prisma_cloud_compute_url --uUSER $prisma_cloud_compute_username --password $prisma_cloud_compute_password $IMAGE_APP_REPO_NAME:$IMAGE_TAG
       - echo Build completed on `date`
       - echo Pushing the Docker image...
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_APP_REPO_NAME:$IMAGE_TAG
