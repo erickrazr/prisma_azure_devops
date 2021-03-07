@@ -9,9 +9,12 @@ phases:
     commands:
       - echo APP Build started on `date`
       - echo Building the Docker image..
-      - docker build -t alpine-infra-image:latest .
-      - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_APP_REPO_NAME:$IMAGE_TAG
-       - echo Downloading twistcli
+      - docker build -t IMAGE_APP_REPO_NAME:latest .
+      - docker tag $IMAGE_APP_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_APP_REPO_NAME:$IMAGE_TAG
+      
+  post_build:
+    commands:
+      - echo Downloading twistcli
       - curl -k -u $prisma_cloud_compute_username:$prisma_cloud_compute_password --output ./twistcli $prisma_cloud_compute_url/api/v1/util/twistcli
       - pwd
       - ls
@@ -26,9 +29,6 @@ phases:
       # Finally, we provide the name of the image we built with 'docker build', above.
       
       - ./twistcli images scan --details --address $prisma_cloud_compute_url -user $prisma_cloud_compute_username --password $prisma_cloud_compute_password $IMAGE_APP_REPO_NAME:$IMAGE_TAG
-      
-  post_build:
-    commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_APP_REPO_NAME:$IMAGE_TAG
