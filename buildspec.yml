@@ -9,12 +9,12 @@ phases:
     commands:
       - echo APP Build started on `date`
       - echo Building the Docker image..
-      - docker build -t IMAGE_APP_REPO_NAME:latest .
+      - docker build -t $IMAGE_APP_REPO_NAME:latest .
       - docker tag $IMAGE_APP_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_APP_REPO_NAME:$IMAGE_TAG
-      - docker images
       
   post_build:
     commands:
+      - docker images
       - echo Downloading twistcli
       - curl -k -u $prisma_cloud_compute_username:$prisma_cloud_compute_password --output ./twistcli $prisma_cloud_compute_url/api/v1/util/twistcli
       - pwd
