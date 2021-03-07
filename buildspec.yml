@@ -16,6 +16,7 @@ phases:
     commands:
       - echo Downloading twistcli
       - curl -k -u $prisma_cloud_compute_username:$prisma_cloud_compute_password --output ./twistcli $prisma_cloud_compute_url/api/v1/util/twistcli
+      - chmod +x ./twistcli
       - echo Scanning with twistcli
       
       # Run the scan with twistcli, providing detailed results in CodeBuild and
