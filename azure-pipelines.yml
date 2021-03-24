@@ -19,4 +19,4 @@ steps:
   inputs:
     scanType: 'images'
     twistlockService: 'PrismaImageScan'
-    artifact: 'node:latest'
+    artifact: 'appimage:latest'
