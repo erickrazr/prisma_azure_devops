@@ -14,9 +14,9 @@ steps:
   inputs:
     command: 'build'
     Dockerfile: '**/Dockerfile'
-    arguments: '-t appimage:latest'
+    arguments: '-t demoImage:latest'
 - task: prisma-cloud-compute-scan@3
   inputs:
     scanType: 'images'
     twistlockService: 'PrismaImageScan'
-    artifact: 'appimage:latest'
+    artifact: 'demoImage:latest'
