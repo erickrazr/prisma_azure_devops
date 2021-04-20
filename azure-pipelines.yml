@@ -12,7 +12,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  - group: dev
+  - group: AWS-ECR-Variables
   - name: DOCKER_REPOSITORY
     value: $(AWS_ACCOUNT_ID).dkr.ecr.$(AWS_REGION).amazonaws.com/$(DOCKER_REPOSITORY_NAME)
 
